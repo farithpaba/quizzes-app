@@ -17,12 +17,43 @@ function ModuleStudents() {
     { nombre: "Examen 1", nivel: "B2+", fechaInicio: "15/05/2023", fechaCierre: "15/09/2023" },
     { nombre: "Examen 2", nivel: "A2", fechaInicio: "15/05/2023", fechaCierre: "15/09/2023" },
   ]
-  var quizzes2 = [
+  /* var quizzes2 = [
     { nombre: "Examen 1", nivel: "B2+", fechaInicio: "15/05/2023", fechaCierre: "15/09/2023" },
     { nombre: "Examen 2", nivel: "A2", fechaInicio: "15/05/2023", fechaCierre: "15/09/2023" },
     { nombre: "Examen 3", nivel: "B2+", fechaInicio: "15/05/2023", fechaCierre: "15/09/2023" },
     { nombre: "Examen 4", nivel: "A2", fechaInicio: "15/05/2023", fechaCierre: "15/09/2023" },
-  ]
+  ] */
+
+  const [quizzes2, setQuizzes2] = useState([
+    {
+      id: "aeddd4fb-e5dc-4275-85ff-9c42cd93a063",
+      name:"Examen 1",
+      intentos: [
+        { id: 1, fecha: "13/09/2023", nota: "80%" },
+        { id: 2, fecha: "15/09/2023", nota: "50%" },
+      ],
+      notaFinal: 80
+    },
+    {
+      id: "aeddd4fb-e5dc-4275-85ff-9c42cd93a062",
+      name:"Examen 2",
+      intentos: [
+        { id: 1, fecha: "25/09/2023", nota: "70%" },
+      ],
+      notaFinal: 70
+    },
+    {
+      id: "aeddd4fb-e5dc-4275-85ff-9c42cd93a061",
+      name:"Examen 3",
+      intentos: [
+        { id: 1, fecha: "13/01/2023", nota: "10%" },
+        { id: 2, fecha: "15/02/2023", nota: "60%" },
+      ],
+      notaFinal: 60
+    },
+
+  ])
+
 
   return (
     <div>
@@ -96,7 +127,7 @@ function ModuleStudents() {
             <div onClick={() => navigate("/preExam")} className="bg-white hover:bg-slate-50  hover:cursor-pointer max-w-5xl mx-auto py-1  px-6 rounded-lg shadow-xl my-3">
               <div className="flex flex-col gap-2 mb-4">
                 <a
-                  className="text-2xl text-gray-700 font-bold "
+                  className="text-2xl text-gray-700"
                 >
                   {obj.nombre}
                 </a>
@@ -120,23 +151,46 @@ function ModuleStudents() {
           </div>
           {/* Estudiantes */}
           {quizzes2.map((obj) =>
-            <div onClick={() => navigate("/preExam")} className="bg-white hover:bg-slate-50 hover:cursor-pointer  max-w-5xl mx-auto py-1  px-6 rounded-lg shadow-xl my-3">
-              <div className="flex flex-col gap-2 mb-4">
+            <div className="bg-white max-w-5xl mx-auto py-1 px-6 rounded-lg shadow-xl my-2 pb-3">
+              <div className="flex items-center justify-between my-1 ">
                 <a
-                  className="text-2xl text-gray-700 font-bold  "
+                  className="text-2xl text-gray-700  w-2/3"
                 >
-                  {obj.nombre}
+                  {obj.name}
                 </a>
-              </div>
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <p className="text-gray-500  text-sm">{"Fecha de inicio: " + obj.fechaInicio}</p>
-                  <p className="text-gray-500  text-sm">{"Fecha de cierre: " + obj.fechaCierre}</p>
+                <div className='flex flex-col items-center'>
+                  <p className='text-gray-500'>Nota Final:</p>
+                  <span className="bgColorCustom text-white py-2 px-4 text-xs rounded uppercase">
+                    {obj.notaFinal}
+                  </span>
                 </div>
+              </div>
 
-                <span className="bgColorCustom text-white py-2 px-4 text-xs rounded uppercase">
-                  {obj.nivel}
-                </span>
+              <div >
+                {obj.intentos.length > 0 &&
+                  <div className="flex justify-between   py-1 ">
+                    <p className="font-bold w-13">Intento</p>
+                    <p className="font-bold w-13">&nbsp;&nbsp;Fecha&nbsp;&nbsp;</p>
+                    <p className="font-bold w-10">Nota</p>
+                    <p className="font-bold w-13">Revisión</p>
+                  </div>
+                }
+
+                {obj.intentos.map((intento) =>
+                  <div className="flex justify-between  py-1">
+                    <p className="font-extralight w-13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{intento.id}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p className="font-extralight w-13">{intento.fecha}</p>
+                    <p className="font-extralight w-10">{intento.nota}</p>
+                    <p className="font-extralight w-13 ">
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <a className="hover:underline hover:cursor-pointer hover:textColorCustom">Ver</a>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                    </p>
+                  </div>
+                )}
+
+
+
               </div>
             </div>
           )}

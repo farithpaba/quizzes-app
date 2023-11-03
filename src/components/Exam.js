@@ -43,7 +43,8 @@ export default function Exam(props) {
                         {options === true &&
                             <div className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" >
                                 <div className="" role="none">
-                                    <a onClick={() => { setModalEdit(true); setOptions(false); }} className="text-gray-700 block px-4 py-2 text-sm hover:cursor-pointer hover:text-gray-400" >Opciones</a>
+                                    <a onClick={() => { setModalEdit(true); setOptions(false);}} className="text-gray-700 block px-4 py-2 text-sm hover:cursor-pointer hover:text-gray-400" >Opciones</a>
+                                    <a onClick={() => { setModalEdit(true); setOptions(false);  navigate('/grades');}} className="text-gray-700 block px-4 py-2 text-sm hover:cursor-pointer hover:text-gray-400" >Notas</a>
                                     <a onClick={() => { props.delete(props.obj.id); setOptions(false); }} className="text-gray-700 block px-4 py-2 text-sm hover:cursor-pointer hover:bg-red-500 hover:text-white rounded-b-md " >Eliminar</a>
                                 </div>
                             </div>

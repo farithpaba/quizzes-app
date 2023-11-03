@@ -57,12 +57,12 @@ export default function Sidebar() {
                         >
                             <RiFileUserLine />Estudiantes
                         </a>
-                        <a
+                       {/*  <a
                             onClick={() => { navigate("/grades") }}
                             className={`${location.pathname === "/grades" ? "flex items-center   font-semibold gap-4 bgColorCustom p-4 text-white rounded-lg " : "flex items-center hover:cursor-pointer text-gray-400 font-semibold gap-4 hover:bgColorCustom p-4 hover:text-white rounded-lg transition-colors"}`}
                         >
                             <RiCheckboxLine />Notas
-                        </a>
+                        </a> */}
                     </nav>
                 </div>
                 {/* Logout */}

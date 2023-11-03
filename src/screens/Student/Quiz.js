@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import QuizText from "../../components/Students/QuizText";
 import QuizAudio from "../../components/Students/QuizAudio";
 import QuizQuestionMultipleChoice from "../../components/Students/QuizQuestionMultipleChoice";
+import QuizQuestionComplete from "../../components/Students/QuizQuestionComplete";
+import QuizQuestionDragandDrop from "../../components/Students/QuizQuestionDrag&Drop";
 import QuizImage from "../../components/Students/QuizImage";
 import dayjs from "dayjs";
 import CountdownTimer from "../../components/CountdownTimer";
@@ -85,6 +87,44 @@ function Quiz() {
             type: "multipleChoice",
             respuestaSeleccionada: ""
         },
+        {
+            id: "aa9b08cf-7661-42b3-821d-05c6184a59b9",
+            array: [
+                "vc",
+                "",
+                "gcfx",
+                "fg",
+                "ddfg",
+                {
+                    opcion1: "1",
+                    opcion2: "2",
+                    opcion3: "3",
+                    respuestaCorrecta: "2"
+                }
+            ],
+            textoPrevio: "asddasda",
+            type: "complete",
+            textoCompletar: "vc  gcfx fg ddfg @"
+        },
+        {
+            id: "7c670b91-51ad-433d-9db1-dc36e7025f16",
+            textoPrevio: "asddasda",
+            respuestas: [
+                "does",
+                "fsd",
+                "edas",
+                "a",
+                "dsaddd"
+            ],
+            ordenCorrecto: [
+                "does",
+                "fsd",
+                "edas",
+                "dsaddd",
+                "a"
+            ],
+            type: "drag&drop"
+        }
 
     ])
 
@@ -164,6 +204,10 @@ function Quiz() {
                             {itemIds && itemIds.map(elementId => {
                                 if (elements.find(e => e.id === elementId).type === "multipleChoice")
                                     return <QuizQuestionMultipleChoice key={elementId} id={elementId} obj={elements.find(e => e.id === elementId)} handleSelection={handleSelection} />
+                                if (elements.find(e => e.id === elementId).type === "complete")
+                                    return <QuizQuestionComplete key={elementId} id={elementId} obj={elements.find(e => e.id === elementId)} />
+                                if (elements.find(e => e.id === elementId).type === "drag&drop")
+                                    return <QuizQuestionDragandDrop key={elementId} id={elementId} obj={elements.find(e => e.id === elementId)} />
                                 if (elements.find(e => e.id === elementId).type === "texto")
                                     return <QuizText key={elementId} id={elementId} obj={elements.find(e => e.id === elementId)} />
                                 if (elements.find(e => e.id === elementId).type === "imagen")

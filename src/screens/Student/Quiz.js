@@ -9,6 +9,7 @@ import QuizImage from "../../components/Students/QuizImage";
 import dayjs from "dayjs";
 import CountdownTimer from "../../components/CountdownTimer";
 import ReviewQuestionMultipleChoice from "../../components/Students/ReviewQuestionMultipleChoice";
+import QuizQuestionSpeaking from "../../components/Students/QuizQuestionSpeaking";
 
 
 function Quiz() {
@@ -124,6 +125,13 @@ function Quiz() {
                 "a"
             ],
             type: "drag&drop"
+        },
+        {
+            id: "d2b48b93-75eb-4cd6-a249-ee7e91db563f",
+            pregunta: "cxasd",
+            type: "speaking",
+            intentos: 1,
+            tiempoMax: 1
         }
 
     ])
@@ -208,7 +216,9 @@ function Quiz() {
                                     return <QuizQuestionComplete key={elementId} id={elementId} obj={elements.find(e => e.id === elementId)} />
                                 if (elements.find(e => e.id === elementId).type === "drag&drop")
                                     return <QuizQuestionDragandDrop key={elementId} id={elementId} obj={elements.find(e => e.id === elementId)} />
-                                if (elements.find(e => e.id === elementId).type === "texto")
+                                if (elements.find(e => e.id === elementId).type === "speaking")
+                                    return <QuizQuestionSpeaking key={elementId} id={elementId} obj={elements.find(e => e.id === elementId)} />
+                                    if (elements.find(e => e.id === elementId).type === "texto")
                                     return <QuizText key={elementId} id={elementId} obj={elements.find(e => e.id === elementId)} />
                                 if (elements.find(e => e.id === elementId).type === "imagen")
                                     return <QuizImage key={elementId} id={elementId} obj={elements.find(e => e.id === elementId)} />

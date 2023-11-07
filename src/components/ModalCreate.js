@@ -9,6 +9,7 @@ export default function ModalCreate(props) {
     const [btnFechaLimite, setBtnFechaLimite] = useState(false)
     const [btnCronometro, setBtnCronometro] = useState(false)
     const [numIntentos, setNumIntentos] = useState(1);
+    const [btnCalificable, setBtnCalificable] = useState(false);
 
     if (!props.visible) return null;
     const handleOnClose = (e) => {
@@ -84,7 +85,7 @@ export default function ModalCreate(props) {
                 nivel: nivel,
                 cronometro: cronometro,
                 calificable: calificable,
-                intentos:numIntentos,
+                intentos: numIntentos,
                 revision: revision
 
             }
@@ -126,7 +127,7 @@ export default function ModalCreate(props) {
         setBtnCronometro(false)
     }
 
-    
+
 
     function handleNumIntentos(operator) {
         if (operator === "+") {
@@ -231,11 +232,6 @@ export default function ModalCreate(props) {
                                 </div>
                             </>
                         }
-                        {/* Calificable */}
-                        <div className='flex items-center gap-2 ml-2 my-2'>
-                            <p className='text-gray-500'>Calificable:</p>
-                            <input id='calificable' type='checkbox' />
-                        </div>
                         {/* Intentos permitidos */}
                         <div className='flex gap-4 px-2  items-center'>
                             <p className='text-gray-500'>Intentos permitidos:</p>
@@ -249,13 +245,18 @@ export default function ModalCreate(props) {
                                 </div>
                             </div>
                         </div>
-                        {/* Revision */}
+                        {/* Calificable */}
                         <div className='flex items-center gap-2 ml-2 my-2'>
-                            <p className='text-gray-500'>Permitir revisión:</p>
-                            <input id='revision' type='checkbox' />
+                            <p className='text-gray-500'>Auto-calificación:</p>
+                            <input onClick={() => setBtnCalificable(!btnCalificable)} id='calificable' type='checkbox' />
                         </div>
-
-
+                        {/* Revision */}
+                        {btnCalificable &&
+                            <div className='flex items-center gap-2 ml-2 my-2'>
+                                <p className='text-gray-500'>Permitir revisión:</p>
+                                <input id='revision' type='checkbox' />
+                            </div>
+                        }
                     </div>
                     {validation2 === true && <p className='text-center text-red-500 my-3'>La fecha de inicio no puede ser  mayor o igual que la fecha de cierre.</p>}
                     {validation === true ? <p className='text-center text-red-500 my-3'>Por favor, completar todos los campos para avanzar.</p> : <br />}
